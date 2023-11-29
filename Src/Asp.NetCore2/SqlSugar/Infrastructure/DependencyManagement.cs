@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -39,13 +38,6 @@ namespace SqlSugar
         {
             if (!IsTryMySqlData)
             {
-                try
-                {
-                    MySqlProvider db = new MySqlProvider();
-                    var conn = db.GetAdapter();
-                    IsTryMySqlData = true;
-                }
-                catch
                 {
                     var message = ErrorMessage.GetThrowMessage(
                      "You need to refer to MySql.Data.dll",
@@ -59,13 +51,6 @@ namespace SqlSugar
         {
             if (!IsTryPgSql)
             {
-                try
-                {
-                    PostgreSQLProvider db = new PostgreSQLProvider();
-                    var conn = db.GetAdapter();
-                    IsTryPgSql = true;
-                }
-                catch
                 {
                     var message = ErrorMessage.GetThrowMessage(
                      "You need to refer to Npgsql 3.2.7",
@@ -79,13 +64,6 @@ namespace SqlSugar
         {
             if (!IsTryOracle)
             {
-                try
-                {
-                    OracleProvider db = new OracleProvider();
-                    var conn = db.GetAdapter();
-                    IsTryOracle = true;
-                }
-                catch
                 {
                     var message = ErrorMessage.GetThrowMessage(
                      "You need to refer to Oracle.ManagedDataAccess.Core",
@@ -119,13 +97,6 @@ namespace SqlSugar
         {
             if (!IsTryKd)
             {
-                try
-                {
-                    KdbndpProvider db = new KdbndpProvider();
-                    var conn = db.GetAdapter();
-                    IsTryKd = true;
-                }
-                catch (Exception ex)
                 {
                     var message = "需要引用Kdbndp.dll,Github搜索sqlsugar源码里面有";
                     throw new Exception(message);
@@ -137,13 +108,6 @@ namespace SqlSugar
         {
             if (!IsTryDm)
             {
-                try
-                {
-                    DmProvider db = new DmProvider();
-                    var conn = db.GetAdapter();
-                    IsTryDm = true;
-                }
-                catch (Exception ex)
                 {
                     var message = "需要引用DmProvider.dll,Github搜索sqlsugar源码里面有";
                     throw new Exception(message);
@@ -155,13 +119,6 @@ namespace SqlSugar
         {
             if (!IsTryOscar)
             {
-                try
-                {
-                    OscarProvider db = new OscarProvider();
-                    var conn = db.GetAdapter();
-                    IsTryOscar = true;
-                }
-                catch (Exception ex)
                 {
                     var message = "需要引用Oscar.Data.SqlClient.dll,Github搜索sqlsugar源码里面有";
                     throw new Exception(message);

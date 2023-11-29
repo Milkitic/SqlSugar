@@ -1,6 +1,5 @@
 ﻿using OrmTest;
 using SqlSugar;
-using static Npgsql.Replication.PgOutput.Messages.RelationMessage;
 
 namespace OceanBaseForOracle
 {

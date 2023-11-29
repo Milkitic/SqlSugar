@@ -14,38 +14,11 @@ namespace SqlSugar
         {
             switch (this.context.CurrentConnectionConfig.DbType)
             {
-                case DbType.MySql:
-                    var result= new MySqlFastBuilder();
-                    result.CharacterSet = this.CharacterSet;
-                    return result;
-                case DbType.SqlServer:
-                    var result2= new SqlServerFastBuilder();
-                    result2.DbFastestProperties.IsOffIdentity = this.IsOffIdentity;
-                    return result2;
                 case DbType.Sqlite:
                     return new SqliteFastBuilder(this.entityInfo);
-                case DbType.Oracle:
-                    return new OracleFastBuilder(this.entityInfo);
-                case DbType.PostgreSQL:
-                    return new PostgreSQLFastBuilder(this.entityInfo);
-                case DbType.MySqlConnector:
-                    var resultConnector = InstanceFactory.CreateInstance<IFastBuilder>("SqlSugar.MySqlConnector.MySqlFastBuilder");
-                    resultConnector.CharacterSet = this.CharacterSet;
-                    return resultConnector;
-                case DbType.Dm:
-                    var result3= new DmFastBuilder();
-                    result3.DbFastestProperties.IsOffIdentity = this.IsOffIdentity;
-                    return result3;
-                case DbType.ClickHouse:
-                    var resultConnectorClickHouse = InstanceFactory.CreateInstance<IFastBuilder>("SqlSugar.ClickHouse.ClickHouseFastBuilder");
-                    resultConnectorClickHouse.CharacterSet = this.CharacterSet;
-                    return resultConnectorClickHouse;
-                case DbType.Kdbndp:
-                    break;
-                case DbType.Oscar:
-                    break;
                 default:
-                    break;
+                    throw new ArgumentOutOfRangeException(nameof(this.context.CurrentConnectionConfig.DbType),
+                        this.context.CurrentConnectionConfig.DbType, null);
             }
             var reslut = InstanceFactory.CreateInstance<IFastBuilder>($"SqlSugar.{this.context.CurrentConnectionConfig.DbType}FastBuilder");
             reslut.CharacterSet = this.CharacterSet;

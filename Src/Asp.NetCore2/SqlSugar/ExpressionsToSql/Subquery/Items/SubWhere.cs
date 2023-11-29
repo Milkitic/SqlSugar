@@ -76,14 +76,6 @@ namespace SqlSugar
             }
 
             var regex = @"^WHERE  (\@Const\d+) $";
-            if (this.Context is OracleExpressionContext)
-            {
-                regex = @"^WHERE  (\:Const\d+) $";
-            }
-            if (this.Context is DmExpressionContext)
-            {
-                regex = @"^WHERE  (\:Const\d+) $";
-            }
             if (Regex.IsMatch(result, regex))
             {
                 var value = GetValue(result, regex);

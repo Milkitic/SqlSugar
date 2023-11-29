@@ -196,7 +196,7 @@ namespace SqlSugar
                         }
                         else if (this.Context.CurrentConnectionConfig.DbType == DbType.PostgreSQL && (this.Context.CurrentConnectionConfig.MoreSettings == null || this.Context.CurrentConnectionConfig.MoreSettings?.PgSqlIsAutoToLower == true))
                         {
-                            andString.AppendFormat("\"{0}\"={1} ", primaryField.ToLower(), new PostgreSQLExpressionContext().GetValue(entityValue));
+                            throw new NotSupportedException(nameof(DbType.PostgreSQL));
                         }
                         else if ( entityValue != null &&UtilMethods.IsNumber( UtilMethods.GetUnderType(entityValue.GetType()).Name))
                         {

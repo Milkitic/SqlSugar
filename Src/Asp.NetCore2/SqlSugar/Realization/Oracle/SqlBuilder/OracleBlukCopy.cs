@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 using System.Data;
 
-using Oracle.ManagedDataAccess.Client;
-
 using System.Linq;
 
 using System.Text;
@@ -35,46 +33,9 @@ namespace SqlSugar
         public int ExecuteBulkCopy()
 
         {
-
-            if (DbColumnInfoList == null || DbColumnInfoList.Count == 0) return 0;
-
-
-
-            if (Inserts.First().GetType() == typeof(DataTable))
-
-            {
-
-                return WriteToServer();
-
-            }
-
-            DataTable dt = GetCopyData();
-
-            OracleBulkCopy bulkCopy = GetBulkCopyInstance();
-
-            bulkCopy.DestinationTableName = InsertBuilder.GetTableNameString;
-
-            try
-
-            {
-
-                bulkCopy.WriteToServer(dt);
-
-            }
-
-            catch (Exception ex)
-
-            {
-
-                CloseDb();
-
-                throw ex;
-
-            }
-
-            CloseDb();
-
-            return DbColumnInfoList.Count;
+            
+            throw new DbNotSupportedException(DbType.Oracle);
+        
 
         }
 
@@ -83,46 +44,8 @@ namespace SqlSugar
         public async Task<int> ExecuteBulkCopyAsync()
 
         {
-
-            if (DbColumnInfoList == null || DbColumnInfoList.Count == 0) return 0;
-
-
-
-            if (Inserts.First().GetType() == typeof(DataTable))
-
-            {
-
-                return WriteToServer();
-
-            }
-
-            DataTable dt = GetCopyData();
-
-            OracleBulkCopy bulkCopy = GetBulkCopyInstance();
-
-            bulkCopy.DestinationTableName = InsertBuilder.GetTableNameString;
-
-            try
-
-            {
-
-                await Task.Run(() => bulkCopy.WriteToServer(dt));
-
-            }
-
-            catch (Exception ex)
-
-            {
-
-                CloseDb();
-
-                throw ex;
-
-            }
-
-            CloseDb();
-
-            return DbColumnInfoList.Count;
+            
+            throw new DbNotSupportedException(DbType.Oracle);
 
         }
 
@@ -131,26 +54,8 @@ namespace SqlSugar
         private int WriteToServer()
 
         {
-
-            var dt = this.Inserts.First() as DataTable;
-
-            if (dt == null)
-
-                return 0;
-
-            Check.Exception(dt.TableName == "Table", "dt.TableName can't be null ");
-
-            dt = GetCopyWriteDataTable(dt);
-
-            OracleBulkCopy copy = GetBulkCopyInstance();
-
-            copy.DestinationTableName = this.Builder.GetTranslationColumnName(dt.TableName);
-
-            copy.WriteToServer(dt);
-
-            CloseDb();
-
-            return dt.Rows.Count;
+            
+            throw new DbNotSupportedException(DbType.Oracle);
 
         }
 
@@ -200,37 +105,7 @@ namespace SqlSugar
 
         }
 
-        private OracleBulkCopy GetBulkCopyInstance()
-
-        {
-            if (this.Context.Ado.Connection.State == ConnectionState.Closed)
-
-            {
-
-                this.Context.Ado.Connection.Open();
-
-            }
-
-            OracleBulkCopy copy;
-
-            if (this.Context.Ado.Transaction == null)
-
-            {
-
-                copy = new OracleBulkCopy((OracleConnection)this.Context.Ado.Connection, Oracle.ManagedDataAccess.Client.OracleBulkCopyOptions.Default);
-
-            }
-
-            else
-
-            {
-
-                copy = new OracleBulkCopy((OracleConnection)this.Context.Ado.Connection, OracleBulkCopyOptions.UseInternalTransaction);
-
-            }
-            return copy;
-
-        }
+      
 
         private DataTable GetCopyData()
 

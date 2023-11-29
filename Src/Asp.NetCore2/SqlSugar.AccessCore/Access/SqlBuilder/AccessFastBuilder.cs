@@ -1,5 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -15,10 +14,6 @@ namespace SqlSugar.Access
         public async Task<int> ExecuteBulkCopyAsync(DataTable dt)
         {
 
-            throw new NotSupportedException();
-        }
-        public SqlBulkCopy GetBulkCopyInstance()
-        {
             throw new NotSupportedException();
         }
 

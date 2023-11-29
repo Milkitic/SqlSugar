@@ -41,11 +41,6 @@ namespace SqlSugar
 
         public string GetValue(Expression expression)
         {
-            if (Context is SqlServerExpressionContext)
-            {
-                return SqlWith.NoLock;
-            }
-            else 
             {
                 return "";
             }

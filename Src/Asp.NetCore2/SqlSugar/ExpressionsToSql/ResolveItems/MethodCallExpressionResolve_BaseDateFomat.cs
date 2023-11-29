@@ -259,7 +259,7 @@ namespace SqlSugar
         }
         private bool IsSqlServer()
         {
-            return this.Context is SqlServerExpressionContext;
+            return false;
         }
         private bool IsMySql()
         {
@@ -273,12 +273,11 @@ namespace SqlSugar
         }
         private bool IsPg()
         {
-            return this.Context is PostgreSQLExpressionContext
-                   ||this.Context is KdbndpExpressionContext;
+            return false;
         }
         private bool IsOracle()
         {
-            return this.Context is OracleExpressionContext;
+            return false;
         }
     }
 }

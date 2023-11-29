@@ -39,15 +39,15 @@ namespace SqlSugar
         {
             if (currentConnectionConfig.DbType == DbType.SqlServer)
             {
-                return new SqlServerQueryable<T>();
+                throw new DbNotSupportedException(currentConnectionConfig.DbType);
             }
             else if (currentConnectionConfig.DbType == DbType.MySql)
             {
-                return new MySqlQueryable<T>();
+                throw new DbNotSupportedException(currentConnectionConfig.DbType);
             }
             else if (currentConnectionConfig.DbType == DbType.PostgreSQL)
             {
-                return new PostgreSQLQueryable<T>();
+                throw new DbNotSupportedException(currentConnectionConfig.DbType);
             } 
             else
             {
@@ -61,7 +61,7 @@ namespace SqlSugar
         {
             if (currentConnectionConfig.DbType == DbType.SqlServer)
             {
-                return new SqlServerQueryable<T, T2>();
+                throw new DbNotSupportedException(currentConnectionConfig.DbType);
             }
             else
             {
@@ -75,7 +75,7 @@ namespace SqlSugar
         {
             if (currentConnectionConfig.DbType == DbType.SqlServer)
             {
-                return new SqlServerQueryable<T, T2, T3>();
+                throw new DbNotSupportedException(currentConnectionConfig.DbType);
             }
             else
             {
@@ -158,11 +158,11 @@ namespace SqlSugar
         {
             if (currentConnectionConfig.DbType == DbType.SqlServer)
             {
-                return new SqlServerQueryBuilder();
+                throw new DbNotSupportedException(currentConnectionConfig.DbType);
             }
             else if (currentConnectionConfig.DbType == DbType.MySql)
             {
-                return new MySqlQueryBuilder();
+                throw new DbNotSupportedException(currentConnectionConfig.DbType);
             }
             else
             {
@@ -190,11 +190,11 @@ namespace SqlSugar
         {
             if (currentConnectionConfig.DbType == DbType.SqlServer)
             {
-                return new SqlServerExpressionContext();
+                throw new DbNotSupportedException(currentConnectionConfig.DbType);
             }
             else if (currentConnectionConfig.DbType == DbType.MySql)
             {
-                return new MySqlExpressionContext();
+                throw new DbNotSupportedException(currentConnectionConfig.DbType);
             }
             else
             {
@@ -207,11 +207,11 @@ namespace SqlSugar
         {
             if (currentConnectionConfig.DbType == DbType.SqlServer)
             {
-                return new SqlServerBuilder();
+                throw new DbNotSupportedException(currentConnectionConfig.DbType);
             }
             else if (currentConnectionConfig.DbType == DbType.MySql)
             {
-                return new MySqlBuilder();
+                throw new DbNotSupportedException(currentConnectionConfig.DbType);
             }
             else
             {
@@ -224,7 +224,7 @@ namespace SqlSugar
         {
             if (currentConnectionConfig.DbType == DbType.Oracle)
             {
-                return new OracleUpdateable<T>();
+                throw new DbNotSupportedException(currentConnectionConfig.DbType);
             }
             else
             {
@@ -236,7 +236,7 @@ namespace SqlSugar
         {
             if (currentConnectionConfig.DbType == DbType.Oracle)
             {
-                return new OracleDeleteable<T>();
+                throw new DbNotSupportedException(currentConnectionConfig.DbType);
             }
             else
             {
@@ -248,19 +248,19 @@ namespace SqlSugar
         {
             if (currentConnectionConfig.DbType == DbType.Oracle)
             {
-                return new OracleInsertable<T>();
+                throw new DbNotSupportedException(currentConnectionConfig.DbType);
             }
             else if (currentConnectionConfig.DbType == DbType.PostgreSQL)
             {
-                return new PostgreSQLInserttable<T>();
+                throw new DbNotSupportedException(currentConnectionConfig.DbType);
             }
             else if (currentConnectionConfig.DbType == DbType.Kdbndp)
             {
-                return new KdbndpInserttable<T>();
+                throw new DbNotSupportedException(currentConnectionConfig.DbType);
             }
             else if (currentConnectionConfig.DbType == DbType.Oscar)
             {
-                return new KdbndpInserttable<T>();
+                throw new DbNotSupportedException(currentConnectionConfig.DbType);
             }
             else if (IsCustomDb(currentConnectionConfig))
             {
@@ -305,11 +305,11 @@ namespace SqlSugar
         {
             if (currentConnectionConfig.DbType == DbType.SqlServer)
             {
-                return new SqlServerDbBind();
+                throw new DbNotSupportedException(currentConnectionConfig.DbType);
             }
             else if (currentConnectionConfig.DbType == DbType.MySql)
             {
-                return new MySqlDbBind();
+                throw new DbNotSupportedException(currentConnectionConfig.DbType);
             }
             else
             {
@@ -340,7 +340,7 @@ namespace SqlSugar
         {
             if (currentConnectionConfig.DbType == DbType.SqlServer)
             {
-                return new SqlServerProvider();
+                throw new DbNotSupportedException(currentConnectionConfig.DbType);
             }
             else
             {

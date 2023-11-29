@@ -39,10 +39,6 @@ namespace SqlSugar
 
         public string GetValue(Expression expression)
         {
-            if (this.Context is OracleExpressionContext)
-            {
-                throw new Exception("Oracle Subquery can't OrderBy");
-            }
             var exp = expression as MethodCallExpression;
             var argExp = exp.Arguments[0];
             var result = "";
